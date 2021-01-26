@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 
 import { fetchFruits } from '../actions'
 
+import IngredientList from './IngredientList'
+
 export class App extends React.Component {
   state = {
     fruits: []
@@ -15,6 +17,7 @@ export class App extends React.Component {
   render () {
     return (
       <div className='app'>
+        <IngredientList />
         <h1>Fullstack Boilerplate - with Fruits!</h1>
         <ul>
           {this.props.fruits.map(fruit => (
