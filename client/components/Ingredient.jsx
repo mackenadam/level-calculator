@@ -15,6 +15,7 @@ class Ingredient extends React.Component {
           <td>4.6</td>
           <td>3.5</td>
           <td>12.2</td>
+          <td><button>x</button></td>
         </tr>
       </>
     )

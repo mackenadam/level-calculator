@@ -21,6 +21,15 @@ class IngredientList extends React.Component {
           </tr>
           <Ingredient />
         </table>
+
+        <div>
+          <select name="" id="">
+            <option value="The sausages">The sausages</option>
+            <option value="The beans">The beans</option>
+            <option value="Something else">Something else</option>
+          </select>
+          <button>Select ingredient</button>
+        </div>
       </div>
     )
   }
