@@ -18,12 +18,6 @@ export class App extends React.Component {
     return (
       <div className='app'>
         <IngredientList />
-        <h1>Fullstack Boilerplate - with Fruits!</h1>
-        <ul>
-          {this.props.fruits.map(fruit => (
-            <li key={fruit}>{fruit}</li>
-          ))}
-        </ul>
       </div>
     )
   }
