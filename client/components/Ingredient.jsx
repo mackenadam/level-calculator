@@ -9,12 +9,12 @@ class Ingredient extends React.Component {
       <>
         <tr>
           <td>Bean Supreme</td>
-          <td>150</td>
-          <td>579</td>
-          <td>6.6</td>
-          <td>4.6</td>
-          <td>3.5</td>
-          <td>12.2</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
           <td><button>x</button></td>
         </tr>
       </>
