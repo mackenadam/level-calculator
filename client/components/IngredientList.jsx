@@ -18,17 +18,20 @@ class IngredientList extends React.Component {
     return (
       <div>
         <table>
-          <tr>
-            <th>Name</th>
-            <th>Weight</th>
-            <th>Cal</th>
-            <th>Fat</th>
-            <th>Carbs</th>
-            <th>Sugar</th>
-            <th>Protein</th>
-          </tr>
-
-          <Ingredient />
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Weight</th>
+              <th>Cal</th>
+              <th>Fat</th>
+              <th>Carbs</th>
+              <th>Sugar</th>
+              <th>Protein</th>
+            </tr> 
+          </thead>
+          <tbody>
+            <Ingredient />
+          </tbody>
         </table>
 
         <div>
