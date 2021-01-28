@@ -35,17 +35,43 @@ class IngredientList extends React.Component {
             })
             }
           </tbody>
+          <tfoot>
+            <tr>
+              <th>Add a new ingredient</th>
+            </tr>
+            <tr>
+              <th>Name</th>
+              <th>Cal</th>
+              <th>Fat</th>
+              <th>Carbs</th>
+              <th>Sugar</th>
+              <th>Protein</th>
+            </tr>
+            <tr>
+              <td>
+                <input type="text"/>
+              </td>
+              <td>
+                <input type="number" step="0.1" min="0" />
+              </td>
+              <td>
+                <input type="number" step="0.1" min="0" />
+              </td>
+              <td>
+                <input type="number" step="0.1" min="0" />
+              </td>
+              <td>
+                <input type="number" step="0.1" min="0" />
+              </td>
+              <td>
+                <input type="number" step="0.1" min="0" />
+              </td>
+              <td>
+                <button>Add</button>
+              </td>
+            </tr>
+          </tfoot>
         </table>
-
-        <div>
-          <select name="" id="">
-            
-            <option value="The sausages">The sausages</option>
-            <option value="The beans">The beans</option>
-            <option value="Something else">Something else</option>
-          </select>
-          <button>Select ingredient</button>
-        </div>
       </div>
     )
   }
