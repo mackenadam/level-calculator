@@ -10,6 +10,15 @@ exports.seed = function(knex) {
           carbohydrates: 4.6,
           sugar: 3.5,
           protein: 12.2
+        },
+        {
+          id: 2,
+          name: 'Not Sausages',
+          energy: 479,
+          fat: 6.9,
+          carbohydrates: 6.6,
+          sugar: 5.5,
+          protein: 12.7
         }
       ]);
     });
