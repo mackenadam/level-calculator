@@ -21,7 +21,6 @@ class IngredientList extends React.Component {
           <thead>
             <tr>
               <th>Name</th>
-              <th>Weight</th>
               <th>Cal</th>
               <th>Fat</th>
               <th>Carbs</th>
@@ -30,7 +29,11 @@ class IngredientList extends React.Component {
             </tr> 
           </thead>
           <tbody>
-            <Ingredient />
+            {
+            this.props.ingredients.map(item => {
+              return <Ingredient key={item.id} id={item.id} />
+            })
+            }
           </tbody>
         </table>
 
