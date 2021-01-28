@@ -2,7 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 class Ingredient extends React.Component {
-  state = {}
+  state = {
+    ingredients: []
+  }
 
   render () {
     return (
@@ -23,7 +25,9 @@ class Ingredient extends React.Component {
 }
 
 function mapStateToProps(globalState) {
-  return {}
+  return {
+    ingredients: globalState.ingredients
+  }
 }
 
 export default connect(mapStateToProps)(Ingredient)
