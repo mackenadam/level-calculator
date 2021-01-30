@@ -7,11 +7,28 @@ import Ingredient from './Ingredient'
 
 class IngredientList extends React.Component {
   state = {
-    ingredients: []
+    ingredients: [],
+    newIngredient: {
+      name: '',
+      energy: null,
+      fat: null,
+      carbohydrates: null,
+      sugar: null,
+      protein: null
+    }
   }
 
   componentDidMount () {
     this.props.dispatch(fetchIngredients())
+  }
+
+  handleChange = (event) => {
+    this.setState({
+      newIngredient: {
+        ...this.state.newIngredient,
+        [event.target.name]: event.target.value
+      }
+    })
   }
 
   render () {
@@ -49,22 +66,22 @@ class IngredientList extends React.Component {
             </tr>
             <tr>
               <td>
-                <input type="text"/>
+                <input type="text" name="name" onChange={this.handleChange} />
               </td>
               <td>
-                <input type="number" step="0.1" min="0" />
+                <input type="number" name="energy" onChange={this.handleChange} step="0.1" min="0" />
               </td>
               <td>
-                <input type="number" step="0.1" min="0" />
+                <input type="number" name="fat" onChange={this.handleChange} step="0.1" min="0" />
               </td>
               <td>
-                <input type="number" step="0.1" min="0" />
+                <input type="number" name="carbohydrates" onChange={this.handleChange} step="0.1" min="0" />
               </td>
               <td>
-                <input type="number" step="0.1" min="0" />
+                <input type="number" name="sugar" onChange={this.handleChange} step="0.1" min="0" />
               </td>
               <td>
-                <input type="number" step="0.1" min="0" />
+                <input type="number" name="protein" onChange={this.handleChange} step="0.1" min="0" />
               </td>
               <td>
                 <button>Add</button>
