@@ -3,19 +3,19 @@ import { connect } from 'react-redux'
 
 class Ingredient extends React.Component {
   state = {
-    ingredient: this.props.ingredients[this.props.id - 1]
+    currentIngredient: this.props.ingredients[this.props.id - 1]
   }
 
   render () {
     return (
       <>
         <tr>
-          <td>{this.state.ingredient.name}</td>
-          <td>{this.state.ingredient.energy}</td>
-          <td>{this.state.ingredient.fat}</td>
-          <td>{this.state.ingredient.carbohydrates}</td>
-          <td>{this.state.ingredient.sugar}</td>
-          <td>{this.state.ingredient.protein}</td>
+          <td>{this.state.currentIngredient.name}</td>
+          <td>{this.state.currentIngredient.energy}</td>
+          <td>{this.state.currentIngredient.fat}</td>
+          <td>{this.state.currentIngredient.carbohydrates}</td>
+          <td>{this.state.currentIngredient.sugar}</td>
+          <td>{this.state.currentIngredient.protein}</td>
           <td><button>x</button></td>
         </tr>
       </>

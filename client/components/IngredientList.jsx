@@ -4,31 +4,15 @@ import { connect } from 'react-redux'
 import { fetchIngredients } from '../actions'
 
 import Ingredient from './Ingredient'
+import IngredientAdd from './IngredientAdd'
 
 class IngredientList extends React.Component {
   state = {
-    ingredients: [],
-    newIngredient: {
-      name: '',
-      energy: null,
-      fat: null,
-      carbohydrates: null,
-      sugar: null,
-      protein: null
-    }
+    ingredients: []
   }
 
   componentDidMount () {
     this.props.dispatch(fetchIngredients())
-  }
-
-  handleChange = (event) => {
-    this.setState({
-      newIngredient: {
-        ...this.state.newIngredient,
-        [event.target.name]: event.target.value
-      }
-    })
   }
 
   render () {
@@ -52,42 +36,7 @@ class IngredientList extends React.Component {
             })
             }
           </tbody>
-          <tfoot>
-            <tr>
-              <th>Add a new ingredient</th>
-            </tr>
-            <tr>
-              <th>Name</th>
-              <th>Cal</th>
-              <th>Fat</th>
-              <th>Carbs</th>
-              <th>Sugar</th>
-              <th>Protein</th>
-            </tr>
-            <tr>
-              <td>
-                <input type="text" name="name" onChange={this.handleChange} />
-              </td>
-              <td>
-                <input type="number" name="energy" onChange={this.handleChange} step="0.1" min="0" />
-              </td>
-              <td>
-                <input type="number" name="fat" onChange={this.handleChange} step="0.1" min="0" />
-              </td>
-              <td>
-                <input type="number" name="carbohydrates" onChange={this.handleChange} step="0.1" min="0" />
-              </td>
-              <td>
-                <input type="number" name="sugar" onChange={this.handleChange} step="0.1" min="0" />
-              </td>
-              <td>
-                <input type="number" name="protein" onChange={this.handleChange} step="0.1" min="0" />
-              </td>
-              <td>
-                <button>Add</button>
-              </td>
-            </tr>
-          </tfoot>
+          <IngredientAdd />
         </table>
       </div>
     )
