@@ -1,4 +1,7 @@
 import React from 'react'
+import { connect } from 'react-redux'
+
+import { insertIngredient } from '../actions'
 
 class IngredientAdd extends React.Component {
   state = {
@@ -22,11 +25,11 @@ class IngredientAdd extends React.Component {
   }
 
   handleSubmit = () => {
-    const isCompleted = Object.keys(this.state.newIngredient).every(input => input !== null)
+    const isCompleted = Object.values(this.state.newIngredient).every(input => input !== null)
     if (isCompleted) {
-      console.log('Success! ' + this.state.newIngredient)
+      this.props.dispatch(insertIngredient(this.state.newIngredient))
     } else {
-      console.log('Failed! ' + this.state.newIngredient)
+      alert('You forgot to fill out an input. Make sure all fields are completed and try again.')
     }
   }
 
@@ -72,5 +75,10 @@ class IngredientAdd extends React.Component {
   }
 }
 
+function mapStateToProps(globalState) {
+  return {
+    ingredients: globalState.ingredients
+  }
+}
 
-export default IngredientAdd
+export default connect()(IngredientAdd)

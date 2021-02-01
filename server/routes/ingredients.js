@@ -7,11 +7,20 @@ const router = express.Router()
 router.get('/', (req, res) => {
   db.getIngredients()
     .then(results => {
-      console.log('Route: ', results)
       res.json(results)
     })
     .catch(err => {
-      console.log('Route: ', err)
+      res.status(500).json({ message: 'Sorry, something is kaputt...'})
+    })
+})
+
+router.post('/addIngredient', (req, res) => {
+  const newIngredient = req.body
+  db.addIngredient(newIngredient)
+    .then(result => {
+      res.json(result)
+    })
+    .catch(err => {
       res.status(500).json({ message: 'Sorry, something is kaputt...'})
     })
 })
