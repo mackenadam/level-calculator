@@ -6,6 +6,10 @@ class Ingredient extends React.Component {
     currentIngredient: this.props.ingredients[this.props.id - 1]
   }
 
+  handleDelete = () => {
+    this.props.dispatch(destroyIngredient(this.props.id))
+  }
+
   render () {
     return (
       <>
@@ -16,7 +20,7 @@ class Ingredient extends React.Component {
           <td>{this.state.currentIngredient.carbohydrates}</td>
           <td>{this.state.currentIngredient.sugar}</td>
           <td>{this.state.currentIngredient.protein}</td>
-          <td><button>x</button></td>
+          <td><button onclick={this.handleDelete}>x</button></td>
         </tr>
       </>
     )
