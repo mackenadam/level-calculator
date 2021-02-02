@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import { destroyIngredient } from '../actions'
+
 class Ingredient extends React.Component {
   state = {
     currentIngredient: this.props.ingredients[this.props.id - 1]
@@ -20,7 +22,7 @@ class Ingredient extends React.Component {
           <td>{this.state.currentIngredient.carbohydrates}</td>
           <td>{this.state.currentIngredient.sugar}</td>
           <td>{this.state.currentIngredient.protein}</td>
-          <td><button onclick={this.handleDelete}>x</button></td>
+          <td><button onClick={this.handleDelete}>x</button></td>
         </tr>
       </>
     )

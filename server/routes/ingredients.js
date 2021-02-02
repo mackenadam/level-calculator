@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
       res.json(results)
     })
     .catch(err => {
-      res.status(500).json({ message: 'Sorry, something is kaputt...'})
+      res.status(500).json({ message: 'Sorry, something is kaputt...' })
     })
 })
 
@@ -21,7 +21,18 @@ router.post('/addIngredient', (req, res) => {
       res.json(result)
     })
     .catch(err => {
-      res.status(500).json({ message: 'Sorry, something is kaputt...'})
+      res.status(500).json({ message: 'Sorry, something is kaputt...' })
+    })
+})
+
+router.post ('/deleteIngredient', (req, res) => {
+  const id = req.body.id
+  db.deleteIngredient(id)
+    .then(result => {
+      res.json(result)
+    })
+    .catch(err => {
+      res.status(500).json({ message: 'Sorry, something is kaputt...' })
     })
 })
 
