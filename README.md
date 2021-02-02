@@ -1,29 +1,43 @@
-# Fullstack boilerplate
+# Level calculator
 
-## Getting Started
+## Introduction
 
-### From the Github UI
-See the instructions [here](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template) to use Github's feature to create a new repo from a template.
+### Overview
+Created as a replacement for an excel spreadsheet my partner uses to calculate the 'level' of meals on her diet.
 
-### From the command line
+Essentially, the programme is a low-carb diet where the participant can eat a number of 'levels' worth of food each day. The current spreadsheet assesses the nutritional info of a user's recipe and gives it a 'level' based on the composition of fat, carbohydrates, and sugars. There are also max and minimum limits on the amount of each component per 100g.
+
+The aim is to create something that is easier to access, and can be used by her friends and family who are also on the same programme.
+
+### Setup
+
+After cloning down the repo be sure to install npm dependencies and start the dev server using the code below.
 
 ```
-git clone https://github.com/dev-academy-challenges/boilerplate-fullstack [your-project-name]
-cd [your-project-name]
 npm install # to install dependencies
 npm run dev # to start the dev server
 ```
 
 You can find the server running on [http://localhost:3000](http://localhost:3000).
 
-## Details
+## User stories
 
-This repo includes:
+### MVP
 
-* a single, simple API endpoint (`/api/v1/fruits`)
-* a single React component (`<App />`)
-* an example database module (`server/db/fruits.js`)
-* an API client module (`client/apis/fruits.js`)
-* configuration for Jest and Enzyme (including JSDOM)
-* configuration for server-side debugging in VS Code
-* a single client-side test (`client/components/App.test.js`)
+I want to be able to save, and access all of the ingredients I use so their nutritional info is always available.
+
+I want to be able to add new ingredients, delete unused ingredients, and update old ingredients.
+
+I want to be able to select ingredients for my recipes, input their weight, and have the app calculate the 'level' of my meal.
+
+### Stretch
+
+I want Giulia (my partner's sister, who lives in Germany and only speaks German) to be able to use the app with me.
+
+I want to be able to have a seperate account from Giulia so we don't have to share ingredients.
+
+I want to be able to see what Giulia has saved on her list.
+
+I want to be able to save recipes that I make all the time so I can access them quickly.
+
+I want the app to be able to work offline, for when I am stuck in the supermarket without reception.
