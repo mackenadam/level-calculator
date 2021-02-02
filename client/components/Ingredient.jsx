@@ -5,11 +5,11 @@ import { destroyIngredient } from '../actions'
 
 class Ingredient extends React.Component {
   state = {
-    currentIngredient: this.props.ingredients[this.props.id - 1]
+    currentIngredient: this.props.ingredient
   }
 
   handleDelete = () => {
-    this.props.dispatch(destroyIngredient(this.props.id))
+    this.props.dispatch(destroyIngredient(this.props.ingredient.id))
   }
 
   render () {

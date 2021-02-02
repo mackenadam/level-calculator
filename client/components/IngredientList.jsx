@@ -32,7 +32,7 @@ class IngredientList extends React.Component {
           <tbody>
             {
             this.props.ingredients.map(item => {
-              return <Ingredient key={item.id} id={item.id} />
+              return <Ingredient key={item.id} ingredient={item} />
             })
             }
           </tbody>
