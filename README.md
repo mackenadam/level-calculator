@@ -11,10 +11,12 @@ The aim is to create something that is easier to access, and can be used by her 
 
 ### Setup
 
-After cloning down the repo be sure to install npm dependencies and start the dev server using the code below.
+After cloning down the repo be sure to install npm dependencies, run the database seeds, and start the dev server using the code below.
 
 ```
 npm install # to install dependencies
+npm run knex migrate:latest # to make sure the db uses the latest tables
+npm run knex seed:run # to populate the database with seed data
 npm run dev # to start the dev server
 ```
 
