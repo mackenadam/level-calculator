@@ -25,9 +25,9 @@ export function deleteIngredientAPI(id) {
     })
 }
 
-export function updateIngredientAPI(id) {
+export function updateIngredientAPI(id, ingredient) {
   return request.post(rootUrl + '/updateIngredient')
-    .send({id})
+    .send({id: id, ingredient: ingredient})
     .then(res => {
       return res.body
     })

@@ -61,9 +61,9 @@ export function destroyIngredient(id) {
   }
 }
 
-export function updateIngredient(id) {
+export function updateIngredient(id, ingredient) {
   return dispatch => {
-    return updateIngredientAPI(id)
+    return updateIngredientAPI(id, ingredient)
       .then(() => {
         getIngredientsAPI()
           .then(ingredients => {

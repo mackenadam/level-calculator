@@ -16,7 +16,7 @@ function deleteIngredient(id, db = connection) {
     .delete()
 }
 
-function updateIngredient(id, db = connection) {
+function updateIngredient(id, ingredient, db = connection) {
   return db('ingredients')
     .update(ingredient)
     .where('id', id)

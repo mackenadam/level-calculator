@@ -38,7 +38,8 @@ router.post('/deleteIngredient', (req, res) => {
 
 router.post('/updateIngredient', (req, res) => {
   const id = req.body.id
-  db.updateIngredient(id)
+  const ingredient = req.body.ingredient
+  db.updateIngredient(id, ingredient)
     .then(result => {
       res.json(result)
     })
