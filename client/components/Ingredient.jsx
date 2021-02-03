@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { destroyIngredient } from '../actions'
+import { destroyIngredient, updateIngredient } from '../actions'
 
 class Ingredient extends React.Component {
   state = {
@@ -10,6 +10,10 @@ class Ingredient extends React.Component {
 
   handleDelete = () => {
     this.props.dispatch(destroyIngredient(this.props.ingredient.id))
+  }
+
+  handleEdit = () => {
+    this.props.dispatch(updateIngredient(this.props.ingredient.id))
   }
 
   render () {
@@ -22,6 +26,7 @@ class Ingredient extends React.Component {
           <td>{this.state.currentIngredient.carbohydrates}</td>
           <td>{this.state.currentIngredient.sugar}</td>
           <td>{this.state.currentIngredient.protein}</td>
+          <td><button onClick={this.handleEdit}>Edit</button></td>
           <td><button onClick={this.handleDelete}>x</button></td>
         </tr>
       </>
