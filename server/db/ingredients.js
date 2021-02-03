@@ -16,8 +16,15 @@ function deleteIngredient(id, db = connection) {
     .delete()
 }
 
+function updateIngredient(id, db = connection) {
+  return db('ingredients')
+    .update(ingredient)
+    .where('id', id)
+}
+
 module.exports = {
   addIngredient,
   deleteIngredient,
-  getIngredients
+  getIngredients,
+  updateIngredient
 }
