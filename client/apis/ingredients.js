@@ -24,3 +24,11 @@ export function deleteIngredientAPI(id) {
       return res.body
     })
 }
+
+export function updateIngredientAPI(id) {
+  return request.post(rootUrl + '/updateIngredient')
+    .send({id})
+    .then(res => {
+      return res.body
+    })
+}

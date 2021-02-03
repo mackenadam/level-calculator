@@ -1,5 +1,5 @@
 import { getFruits } from '../apis/fruits'
-import { addIngredientAPI, deleteIngredientAPI, getIngredientsAPI } from '../apis/ingredients'
+import { addIngredientAPI, deleteIngredientAPI, getIngredientsAPI, updateIngredientAPI } from '../apis/ingredients'
 
 export const SET_FRUITS = 'SET_FRUITS'
 export const SET_INGREDIENTS = 'SET_INGREDIENTS'
