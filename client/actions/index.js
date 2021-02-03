@@ -42,8 +42,8 @@ export function insertIngredient(newIngredient) {
     return addIngredientAPI(newIngredient)
       .then(() => {
         getIngredientsAPI()
-        .then(ingredients => {
-          dispatch(setIngredients(ingredients))
+          .then(ingredients => {
+            dispatch(setIngredients(ingredients))
         })
       })
   }
@@ -54,8 +54,20 @@ export function destroyIngredient(id) {
     return deleteIngredientAPI(id)
       .then(() => {
         getIngredientsAPI()
-        .then(ingredients => {
-          dispatch(setIngredients(ingredients))
+          .then(ingredients => {
+            dispatch(setIngredients(ingredients))
+        })
+      })
+  }
+}
+
+export function updateIngredient(id) {
+  return dispatch => {
+    return updateIngredientAPI(id)
+      .then(() => {
+        getIngredientsAPI()
+          .then(ingredients => {
+            dispatch(setIngredients(ingredients))
         })
       })
   }
