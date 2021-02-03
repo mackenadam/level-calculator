@@ -25,9 +25,20 @@ router.post('/addIngredient', (req, res) => {
     })
 })
 
-router.post ('/deleteIngredient', (req, res) => {
+router.post('/deleteIngredient', (req, res) => {
   const id = req.body.id
   db.deleteIngredient(id)
+    .then(result => {
+      res.json(result)
+    })
+    .catch(err => {
+      res.status(500).json({ message: 'Sorry, something is kaputt...' })
+    })
+})
+
+router.post('/updateIngredient', (req, res) => {
+  const id = req.body.id
+  db.updateIngredient(id)
     .then(result => {
       res.json(result)
     })
