@@ -26,7 +26,9 @@ class Ingredient extends React.Component {
   }
 
   handleDelete = () => {
-    this.props.dispatch(destroyIngredient(this.props.ingredient.id))
+    if (confirm('Do you really want to delete this ingredient?')) {
+      this.props.dispatch(destroyIngredient(this.props.ingredient.id))
+    }
   }
 
   handleToggleEdit = () => {
