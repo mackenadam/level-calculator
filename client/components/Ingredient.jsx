@@ -20,7 +20,8 @@ class Ingredient extends React.Component {
 
   handleCancel = () => {
     this.setState({
-      
+      currentIngredient: this.props.ingredient,
+      isEditing: false
     })
   }
 
@@ -30,12 +31,15 @@ class Ingredient extends React.Component {
 
   handleToggleEdit = () => {
     this.setState({
-      isEditing: !this.state.isEditing
+      isEditing: true
     })
   }
 
   handleSave = () => {
-    this.props.dispatch(updateIngredient(this.props.ingredient.id))
+    this.props.dispatch(updateIngredient(this.props.ingredient.id, this.state.currentIngredient))
+    this.setState({
+      isEditing: false
+    })
   }
 
   render () {
@@ -67,16 +71,16 @@ class Ingredient extends React.Component {
                 <button onClick={this.handleSave}>Save</button>
               </td>
               <td>
-                <button onClick={this.handleToggleEdit}>Cancel</button>
+                <button onClick={this.handleCancel}>Cancel</button>
               </td>
             </tr>
           : <tr>
-              <td>{this.state.currentIngredient.name}</td>
-              <td>{this.state.currentIngredient.energy}</td>
-              <td>{this.state.currentIngredient.fat}</td>
-              <td>{this.state.currentIngredient.carbohydrates}</td>
-              <td>{this.state.currentIngredient.sugar}</td>
-              <td>{this.state.currentIngredient.protein}</td>
+              <td>{this.props.ingredient.name}</td>
+              <td>{this.props.ingredient.energy}</td>
+              <td>{this.props.ingredient.fat}</td>
+              <td>{this.props.ingredient.carbohydrates}</td>
+              <td>{this.props.ingredient.sugar}</td>
+              <td>{this.props.ingredient.protein}</td>
               <td><button onClick={this.handleToggleEdit}>Edit</button></td>
               <td><button onClick={this.handleDelete}>x</button></td>
             </tr>
