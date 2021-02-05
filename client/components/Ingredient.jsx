@@ -9,12 +9,19 @@ class Ingredient extends React.Component {
     isEditing: false
   }
 
-  handleChange = () => {
-    
+  handleChange = (event) => {
+    this.setState({
+      currentIngredient: {
+        ...this.state.currentIngredient,
+        [event.target.name]: event.target.value
+      }
+    })
   }
 
-  handleClose = () => {
-
+  handleCancel = () => {
+    this.setState({
+      
+    })
   }
 
   handleDelete = () => {
@@ -25,7 +32,6 @@ class Ingredient extends React.Component {
     this.setState({
       isEditing: !this.state.isEditing
     })
-    console.log(this.state.isEditing)
   }
 
   handleSave = () => {
@@ -58,10 +64,10 @@ class Ingredient extends React.Component {
                 <input type="number" name="protein" onChange={this.handleChange} step="0.1" min="0" value={this.state.currentIngredient.protein} />
               </td>
               <td>
-                <button onClick={this.handleToggleEdit}>Cancel</button>
+                <button onClick={this.handleSave}>Save</button>
               </td>
               <td>
-                <button onClick={this.handleSave}>Save</button>
+                <button onClick={this.handleToggleEdit}>Cancel</button>
               </td>
             </tr>
           : <tr>
