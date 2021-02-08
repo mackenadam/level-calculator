@@ -1,5 +1,6 @@
 import { getFruits } from '../apis/fruits'
 import { addIngredientAPI, deleteIngredientAPI, getIngredientsAPI, updateIngredientAPI } from '../apis/ingredients'
+import { getRecipeAPI } from '../apis/recipe'
 
 export const SET_FRUITS = 'SET_FRUITS'
 export const SET_INGREDIENTS = 'SET_INGREDIENTS'
@@ -78,5 +79,14 @@ export function setRecipe(ingredients) {
   return {
     type: SET_RECIPE,
     ingredients
+  }
+}
+
+export function fetchRecipe() {
+  return dispatch => {
+    return getRecipeAPI()
+      .then(ingredients => {
+        dispatch(setRecipe(ingredients))
+      })
   }
 }

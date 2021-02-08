@@ -1,10 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import { fetchRecipe } from '../actions'
+
 class Recipe extends React.Component {
 
-  state = {
-    // recipeIngredients: globalState.recipeIngredients
+  componentDidMount() {
+    this.props.dispatch(fetchRecipe())
   }
 
   render () {

@@ -1,10 +1,11 @@
 const express = require('express')
 
-const db = require('/../db/recipe')
+const db = require('../db/recipe')
 
 const router = express.Router()
 
 router.get('/', (req, res) => {
+  console.log('Router')
   db.getRecipe()
     .then(results => {
       res.json(results)
