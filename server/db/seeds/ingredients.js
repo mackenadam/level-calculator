@@ -20,6 +20,6 @@ exports.seed = function(knex) {
           sugar: 5.5,
           protein: 12.7
         }
-      ]);
-    });
-};
+      ])
+    })
+}
