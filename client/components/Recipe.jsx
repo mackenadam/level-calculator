@@ -40,6 +40,9 @@ class Recipe extends React.Component {
               })
             }
           </tbody>
+          <tfoot>
+            
+          </tfoot>
         </table>
       </div>
     )

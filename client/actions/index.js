@@ -3,6 +3,7 @@ import { addIngredientAPI, deleteIngredientAPI, getIngredientsAPI, updateIngredi
 
 export const SET_FRUITS = 'SET_FRUITS'
 export const SET_INGREDIENTS = 'SET_INGREDIENTS'
+export const SET_RECIPE = 'SET_RECIPE'
 
 export function setFruits(fruits) {
   return {
@@ -70,5 +71,12 @@ export function updateIngredient(id, ingredient) {
             dispatch(setIngredients(ingredients))
         })
       })
+  }
+}
+
+export function setRecipe(ingredients) {
+  return {
+    type: SET_RECIPE,
+    ingredients
   }
 }
