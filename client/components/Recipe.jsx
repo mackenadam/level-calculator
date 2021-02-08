@@ -9,7 +9,7 @@ class Recipe extends React.Component {
 
   render () {
     return (
-      <>
+      <div>
         <h1>Recipe</h1>
         <table>
           <thead>
@@ -24,18 +24,24 @@ class Recipe extends React.Component {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Name</td>
-              <td><input type="number" name="weight"/></td>
-              <td>Cal</td>
-              <td>Fat</td>
-              <td>Carbs</td>
-              <td>Sugar</td>
-              <td>Protein</td>
-            </tr>
+            {
+              this.props.recipe.map(ingredient => {
+                return (
+                  <tr key={ingredient.id}>
+                    <td>{ingredient.name}</td>
+                    <td><input type="number" name="weight"/></td>
+                    <td>{ingredient.energy}</td>
+                    <td>{ingredient.fat}</td>
+                    <td>{ingredient.carbohydrates}</td>
+                    <td>{ingredient.sugar}</td>
+                    <td>{ingredient.protein}</td>
+                  </tr>
+                ) 
+              })
+            }
           </tbody>
         </table>
-      </>
+      </div>
     )
   }
 }
@@ -43,7 +49,7 @@ class Recipe extends React.Component {
 function mapStateToProps(globalState) {
   return {
     ingredients: globalState.ingredients,
-    recipeIngredients: globalState.recipeIngredients
+    recipe: globalState.recipe
   }
 }
 
