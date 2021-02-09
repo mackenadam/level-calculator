@@ -15,4 +15,17 @@ router.get('/', (req, res) => {
     })
 })
 
+router.get('/updateRecipe', (req, res) => {
+  const id = req.body.id
+  const weight = req.body.weight
+  console.log(req.body)
+  db.updateRecipe(id, weight)
+    .then(result => {
+      res.json(result)
+    })
+    .catch(err => {
+      res.status(500).json({ message: 'Sorry, something is kaputt'})
+    })
+})
+
 module.exports = router

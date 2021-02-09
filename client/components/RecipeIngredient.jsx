@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import { updateRecipe } from '../actions'
+
 class RecipeIngredient extends React.Component {
   state = {
     ingredient: {
@@ -15,6 +17,12 @@ class RecipeIngredient extends React.Component {
         weight: event.target.value
       }
     })
+  }
+
+  handleRemove = () => {}
+
+  handleSave = () => {
+    this.props.dispatch(updateRecipe(this.state.ingredient.id, this.state.ingredient.weight))
   }
 
   calculateByWeight = (component) => {
@@ -47,10 +55,10 @@ class RecipeIngredient extends React.Component {
           {this.calculateByWeight(this.state.ingredient.protein)}
         </td>
         <td>
-          <button onClick={}>Save</button>
+          <button onClick={this.handleSave}>Save</button>
         </td>
         <td>
-          <button onClick={}>Remove</button>
+          <button onClick={this.handleRemove}>Remove</button>
         </td>
       </tr>
     )
