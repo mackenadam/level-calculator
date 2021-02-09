@@ -9,9 +9,17 @@ export function getRecipeAPI() {
     })
 }
 
+export function addRecipeIngredientAPI(newIngredient) {
+  return request.post(rootUrl + '/addToRecipe')
+    .send(newIngredient)
+    .then(res => {
+      return res.body
+    })
+}
+
 export function updateRecipeAPI(id, weight) {
   console.log(id, weight)
-  return request.get(rootUrl + '/updateRecipe')
+  return request.post(rootUrl + '/updateRecipe')
   .send({id: id, weight: weight})
   .then(res => {
     return res.body

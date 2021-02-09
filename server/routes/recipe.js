@@ -5,7 +5,6 @@ const db = require('../db/recipe')
 const router = express.Router()
 
 router.get('/', (req, res) => {
-  console.log('Router')
   db.getRecipe()
     .then(results => {
       res.json(results)
@@ -15,7 +14,20 @@ router.get('/', (req, res) => {
     })
 })
 
-router.get('/updateRecipe', (req, res) => {
+router.post('/addToRecipe', (req, res) => {
+  const newIngredient = req.body
+  console.log(req.body)
+  db.addToRecipe(newIngredient)
+    .then(result => {
+      res.json(result)
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(500).json({ message: 'Sorry, something is kaputt...'})
+    })
+})
+
+router.post('/updateRecipe', (req, res) => {
   const id = req.body.id
   const weight = req.body.weight
   console.log(req.body)
@@ -24,7 +36,7 @@ router.get('/updateRecipe', (req, res) => {
       res.json(result)
     })
     .catch(err => {
-      res.status(500).json({ message: 'Sorry, something is kaputt'})
+      res.status(500).json({ message: 'Sorry, something is kaputt...'})
     })
 })
 

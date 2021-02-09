@@ -1,12 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { destroyIngredient, updateIngredient } from '../actions'
+import { destroyIngredient, insertRecipeIngredient, updateIngredient } from '../actions'
 
 class Ingredient extends React.Component {
   state = {
     currentIngredient: this.props.ingredient,
     isEditing: false
+  }
+
+  handleAdd = () => {
+    this.props.dispatch(insertRecipeIngredient(this.state.currentIngredient))
   }
 
   handleChange = (event) => {
@@ -83,6 +87,7 @@ class Ingredient extends React.Component {
               <td>{this.props.ingredient.carbohydrates}</td>
               <td>{this.props.ingredient.sugar}</td>
               <td>{this.props.ingredient.protein}</td>
+              <td><button onClick={this.handleAdd}>Add</button></td>
               <td><button onClick={this.handleToggleEdit}>Edit</button></td>
               <td><button onClick={this.handleDelete}>x</button></td>
             </tr>
