@@ -31,8 +31,8 @@ class IngredientList extends React.Component {
           </thead>
           <tbody>
             {
-            this.props.ingredients.map(item => {
-              return <Ingredient key={item.id} ingredient={item} />
+            this.props.ingredients.map(ingredient => {
+              return <Ingredient key={ingredient.id} ingredient={ingredient} />
             })
             }
           </tbody>

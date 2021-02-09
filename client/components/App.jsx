@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { fetchFruits } from '../actions'
 
 import IngredientList from './IngredientList'
-import Recipe from './Recipe'
+import RecipeList from './RecipeList'
 
 export class App extends React.Component {
   state = {
@@ -18,7 +18,7 @@ export class App extends React.Component {
   render () {
     return (
       <div className='app'>
-        <Recipe />
+        <RecipeList />
         <IngredientList />
       </div>
     )

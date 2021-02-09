@@ -3,22 +3,14 @@ import { connect } from 'react-redux'
 
 import { fetchRecipe } from '../actions'
 
-class Recipe extends React.Component {
+import RecipeIngredient from './RecipeIngredient'
 
-  state = {
-    weightInput: 0
-  }
-
+class RecipeList extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchRecipe())
   }
 
-  handleChange = (event) => {
-    console.log(event.target)
-    this.setState({
-      weightInput: event.target.value
-    })
-  }
+
 
   render () {
     return (
@@ -40,15 +32,7 @@ class Recipe extends React.Component {
             {
               this.props.recipe.map(ingredient => {
                 return (
-                  <tr key={ingredient.id}>
-                    <td>{ingredient.name}</td>
-                    <td><input type="number" name="weight" value={this.state.weightInput} onChange={this.handleChange} /></td>
-                    <td>{ingredient.energy}</td>
-                    <td>{ingredient.fat}</td>
-                    <td>{ingredient.carbohydrates}</td>
-                    <td>{ingredient.sugar}</td>
-                    <td>{ingredient.protein}</td>
-                  </tr>
+                  <RecipeIngredient key={ingredient.id} ingredient={ingredient} />
                 ) 
               })
             }
@@ -69,4 +53,4 @@ function mapStateToProps(globalState) {
   }
 }
 
-export default connect(mapStateToProps)(Recipe)
+export default connect(mapStateToProps)(RecipeList)
