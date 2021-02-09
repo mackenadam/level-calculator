@@ -25,13 +25,33 @@ class RecipeIngredient extends React.Component {
   render () {
     return (
       <tr key={this.state.ingredient.id}>
-        <td>{this.state.ingredient.name}</td>
-        <td><input type="number" name="weight" value={this.state.ingredient.weight} onChange={this.handleChange} /></td>
-        <td>{this.calculateByWeight(this.state.ingredient.energy)}</td>
-        <td>{this.calculateByWeight(this.state.ingredient.fat)}</td>
-        <td>{this.calculateByWeight(this.state.ingredient.carbohydrates)}</td>
-        <td>{this.calculateByWeight(this.state.ingredient.sugar)}</td>
-        <td>{this.calculateByWeight(this.state.ingredient.protein)}</td>
+        <td>
+          {this.state.ingredient.name}
+        </td>
+        <td>
+          <input type="number" name="weight" value={this.state.ingredient.weight} onChange={this.handleChange} />
+        </td>
+        <td>
+          {this.calculateByWeight(this.state.ingredient.energy)}
+        </td>
+        <td>
+          {this.calculateByWeight(this.state.ingredient.fat)}
+        </td>
+        <td>
+          {this.calculateByWeight(this.state.ingredient.carbohydrates)}
+        </td>
+        <td>
+          {this.calculateByWeight(this.state.ingredient.sugar)}
+        </td>
+        <td>
+          {this.calculateByWeight(this.state.ingredient.protein)}
+        </td>
+        <td>
+          <button onClick={}>Save</button>
+        </td>
+        <td>
+          <button onClick={}>Remove</button>
+        </td>
       </tr>
     )
   }
