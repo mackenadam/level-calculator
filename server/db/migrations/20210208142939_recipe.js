@@ -3,6 +3,7 @@ exports.up = function(knex) {
   return knex.schema.createTable('recipe', table => {
     table.increments('id')
     table.string('name')
+    table.float('weight').defaultTo(0)
     table.float('energy', 1)
     table.float('fat', 1)
     table.float('carbohydrates', 1)

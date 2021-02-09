@@ -5,8 +5,19 @@ import { fetchRecipe } from '../actions'
 
 class Recipe extends React.Component {
 
+  state = {
+    weightInput: 0
+  }
+
   componentDidMount() {
     this.props.dispatch(fetchRecipe())
+  }
+
+  handleChange = (event) => {
+    console.log(event.target)
+    this.setState({
+      weightInput: event.target.value
+    })
   }
 
   render () {
@@ -31,7 +42,7 @@ class Recipe extends React.Component {
                 return (
                   <tr key={ingredient.id}>
                     <td>{ingredient.name}</td>
-                    <td><input type="number" name="weight"/></td>
+                    <td><input type="number" name="weight" value={this.state.weightInput} onChange={this.handleChange} /></td>
                     <td>{ingredient.energy}</td>
                     <td>{ingredient.fat}</td>
                     <td>{ingredient.carbohydrates}</td>
@@ -43,7 +54,7 @@ class Recipe extends React.Component {
             }
           </tbody>
           <tfoot>
-            
+
           </tfoot>
         </table>
       </div>
