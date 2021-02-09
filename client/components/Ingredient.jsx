@@ -10,7 +10,12 @@ class Ingredient extends React.Component {
   }
 
   handleAdd = () => {
-    this.props.dispatch(insertRecipeIngredient(this.state.currentIngredient))
+    const check = this.props.recipe.find(x => x.id == this.state.currentIngredient.id)
+    if ( check !== undefined) {
+      alert('You\'ve already added this ingredient...')
+    } else (
+      this.props.dispatch(insertRecipeIngredient(this.state.currentIngredient))
+    )
   }
 
   handleChange = (event) => {
@@ -99,7 +104,7 @@ class Ingredient extends React.Component {
 
 function mapStateToProps(globalState) {
   return {
-    ingredients: globalState.ingredients
+    recipe: globalState.recipe
   }
 }
 
