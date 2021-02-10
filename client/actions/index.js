@@ -1,6 +1,6 @@
 import { getFruits } from '../apis/fruits'
 import { addIngredientAPI, deleteIngredientAPI, getIngredientsAPI, updateIngredientAPI } from '../apis/ingredients'
-import { getRecipeAPI, addRecipeIngredientAPI, updateRecipeAPI } from '../apis/recipe'
+import { getRecipeAPI, addRecipeIngredientAPI, removeRecipeIngredientAPI, updateRecipeAPI } from '../apis/recipe'
 
 export const SET_FRUITS = 'SET_FRUITS'
 export const SET_INGREDIENTS = 'SET_INGREDIENTS'
@@ -94,6 +94,18 @@ export function fetchRecipe() {
 export function insertRecipeIngredient(newIngredient) {
   return dispatch => {
     return addRecipeIngredientAPI(newIngredient)
+      .then(() => {
+        getRecipeAPI()
+          .then(ingredients => {
+            dispatch(setRecipe(ingredients))
+          })
+      })
+  }
+}
+
+export function removeRecipeIngredient(id) {
+  return dispatch => {
+    return removeRecipeIngredientAPI(id)
       .then(() => {
         getRecipeAPI()
           .then(ingredients => {

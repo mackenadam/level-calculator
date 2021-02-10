@@ -18,6 +18,7 @@ class IngredientList extends React.Component {
   render () {
     return (
       <div>
+        <h1>Saved Ingredients</h1>
         <table>
           <thead>
             <tr>

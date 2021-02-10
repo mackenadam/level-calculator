@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { updateRecipe } from '../actions'
+import { removeRecipeIngredient, updateRecipe } from '../actions'
 
 class RecipeIngredient extends React.Component {
   state = {
@@ -19,10 +19,16 @@ class RecipeIngredient extends React.Component {
     })
   }
 
-  handleRemove = () => {}
+  handleRemove = () => {
+    this.props.dispatch(removeRecipeIngredient(this.props.ingredient.id))
+  }
 
   handleSave = () => {
-    this.props.dispatch(updateRecipe(this.state.ingredient.id, this.state.ingredient.weight))
+    if (this.state.ingredient.weight == this.props.ingredient.weight) {
+      alert('You haven\'t changed the weight...')
+    } else {
+      this.props.dispatch(updateRecipe(this.state.ingredient.id, this.state.ingredient.weight))
+    }
   }
 
   calculateByWeight = (component) => {

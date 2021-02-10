@@ -17,8 +17,15 @@ export function addRecipeIngredientAPI(newIngredient) {
     })
 }
 
+export function removeRecipeIngredientAPI(id) {
+  return request.post(rootUrl + '/removeFromRecipe')
+    .send({id})
+    .then(res => {
+      return res.body
+    })
+}
+
 export function updateRecipeAPI(id, weight) {
-  console.log(id, weight)
   return request.post(rootUrl + '/updateRecipe')
   .send({id: id, weight: weight})
   .then(res => {

@@ -2,6 +2,7 @@ const connection = require('./connection')
 
 function getIngredients(db = connection) {
   return db('ingredients')
+    .orderBy('name')
     .select()
 }
 
