@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { fetchRecipe } from '../actions'
 
 import RecipeIngredient from './RecipeIngredient'
+import Totals from './Totals'
 
 class RecipeList extends React.Component {
   componentDidMount() {
@@ -37,9 +38,7 @@ class RecipeList extends React.Component {
               })
             }
           </tbody>
-          <tfoot>
-
-          </tfoot>
+          <Totals />
         </table>
       </div>
     )
