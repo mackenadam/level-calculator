@@ -4,11 +4,11 @@ exports.up = function(knex) {
     table.increments('id')
     table.string('name')
     table.float('weight').defaultTo(0)
-    table.float('energy', 1)
-    table.float('fat', 1)
-    table.float('carbohydrates', 1)
-    table.float('sugar', 1)
-    table.float('protein', 1)
+    table.float('energy', 1).defaultTo(0)
+    table.float('fat', 1).defaultTo(0)
+    table.float('carbohydrates', 1).defaultTo(0)
+    table.float('sugar', 1).defaultTo(0)
+    table.float('protein', 1).defaultTo(0)
   })
 }
 
