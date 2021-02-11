@@ -31,9 +31,20 @@ class RecipeIngredient extends React.Component {
     }
   }
 
-  calculateByWeight = (component) => {
-    let weight = this.state.ingredient.weight
-    return ((component * weight) / 100).toFixed(1)
+  filterIngredients = (id, array) => {
+    return array.filter(obj => {
+      return obj.id === id
+    })
+  }
+
+  calculateByWeight = (ingredient, name) => {
+    let data = this.filterIngredients(ingredient.id, this.props.ingredients)
+    if (data.length === 0) {
+      return 0
+    } else {
+      let value = ((ingredient.weight * data[0][name]) / 100).toFixed(1)
+      return value
+    }
   }
 
   render () {
@@ -46,19 +57,19 @@ class RecipeIngredient extends React.Component {
           <input type="number" name="weight" value={this.state.ingredient.weight} onChange={this.handleChange} />
         </td>
         <td>
-          {this.calculateByWeight(this.state.ingredient.energy)}
+          {this.calculateByWeight(this.state.ingredient, 'energy')}
         </td>
         <td>
-          {this.calculateByWeight(this.state.ingredient.fat)}
+          {this.calculateByWeight(this.state.ingredient, 'fat')}
         </td>
         <td>
-          {this.calculateByWeight(this.state.ingredient.carbohydrates)}
+          {this.calculateByWeight(this.state.ingredient, 'carbohydrates')}
         </td>
         <td>
-          {this.calculateByWeight(this.state.ingredient.sugar)}
+          {this.calculateByWeight(this.state.ingredient, 'sugar')}
         </td>
         <td>
-          {this.calculateByWeight(this.state.ingredient.protein)}
+          {this.calculateByWeight(this.state.ingredient, 'protein')}
         </td>
         <td>
           <button onClick={this.handleSave}>Save</button>
@@ -72,7 +83,9 @@ class RecipeIngredient extends React.Component {
 }
 
 function mapStateToProps(globalState) {
-  return {}
+  return {
+    ingredients: globalState.ingredients
+  }
 }
 
 export default connect(mapStateToProps)(RecipeIngredient)
