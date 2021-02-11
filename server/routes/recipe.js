@@ -37,9 +37,8 @@ router.post('/removeFromRecipe', (req, res) => {
 })
 
 router.post('/updateRecipe', (req, res) => {
-  const id = req.body.id
-  const weight = req.body.weight
-  db.updateRecipe(id, weight)
+  const ingredient = req.body
+  db.updateRecipe(ingredient)
     .then(result => {
       res.json(result)
     })

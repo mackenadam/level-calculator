@@ -17,10 +17,10 @@ function removeFromRecipe(id, db = connection) {
     .delete()
 }
 
-function updateRecipe(id, weight, db = connection) {
+function updateRecipe(ingredient, db = connection) {
   return db('recipe')
-    .where({id: id})
-    .update({weight: weight})
+  .update(ingredient)
+  .where('id', ingredient.id)
 }
 
 module.exports = {

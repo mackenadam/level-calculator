@@ -11,13 +11,30 @@ class RecipeIngredient extends React.Component {
   }
 
   handleChange = (event) => {
+    let newWeight = event.target.value
     this.setState({
       ingredient: {
         ...this.state.ingredient,
-        weight: event.target.value
+        weight: newWeight
       }
-    }, () => {this.props.dispatch(updateRecipe(this.state.ingredient.id, this.state.ingredient.weight))})
-    
+    }, () => {
+      let newEnergy = this.calculateByWeight(this.state.ingredient, 'energy')
+      let newFat = this.calculateByWeight(this.state.ingredient, 'fat')
+      let newCarbohydrates = this.calculateByWeight(this.state.ingredient, 'carbohydrates')
+      let newSugar = this.calculateByWeight(this.state.ingredient, 'sugar')
+      let newProtein = this.calculateByWeight(this.state.ingredient, 'protein')
+      
+      this.setState({
+        ingredient: {
+          ...this.state.ingredient,
+          energy: newEnergy,
+          fat: newFat,
+          carbohydrates: newCarbohydrates,
+          sugar: newSugar,
+          protein: newProtein,
+        }
+      }, () => {this.props.dispatch(updateRecipe(this.state.ingredient))})
+    })
   }
 
   handleRemove = () => {
@@ -28,7 +45,7 @@ class RecipeIngredient extends React.Component {
     if (this.state.ingredient.weight == this.props.ingredient.weight) {
       alert('You haven\'t changed the weight...')
     } else {
-      this.props.dispatch(updateRecipe(this.state.ingredient.id, this.state.ingredient.weight))
+      this.props.dispatch(updateRecipe(this.state.ingredient))
     }
   }
 
@@ -36,6 +53,10 @@ class RecipeIngredient extends React.Component {
     return array.filter(obj => {
       return obj.id === id
     })
+  }
+
+  updateValues = () => {
+
   }
 
   calculateByWeight = (ingredient, name) => {

@@ -25,9 +25,9 @@ export function removeRecipeIngredientAPI(id) {
     })
 }
 
-export function updateRecipeAPI(id, weight) {
+export function updateRecipeAPI(ingredient) {
   return request.post(rootUrl + '/updateRecipe')
-  .send({id: id, weight: weight})
+  .send(ingredient)
   .then(res => {
     return res.body
   })

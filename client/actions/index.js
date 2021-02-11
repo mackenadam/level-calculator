@@ -115,9 +115,9 @@ export function removeRecipeIngredient(id) {
   }
 }
 
-export function updateRecipe(id, weight) {
+export function updateRecipe(ingredient) {
   return dispatch => {
-    updateRecipeAPI(id, weight)
+    updateRecipeAPI(ingredient)
       .then(() => {
         getRecipeAPI()
           .then(ingredients => {
