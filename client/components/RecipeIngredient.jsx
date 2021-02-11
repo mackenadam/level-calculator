@@ -16,7 +16,8 @@ class RecipeIngredient extends React.Component {
         ...this.state.ingredient,
         weight: event.target.value
       }
-    })
+    }, () => {this.props.dispatch(updateRecipe(this.state.ingredient.id, this.state.ingredient.weight))})
+    
   }
 
   handleRemove = () => {
