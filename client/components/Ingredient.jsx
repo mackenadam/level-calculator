@@ -11,10 +11,14 @@ class Ingredient extends React.Component {
 
   handleAdd = () => {
     const check = this.props.recipe.find(x => x.id == this.state.currentIngredient.id)
+    const emptyIngredient = {
+      id: this.props.ingredient.id,
+      name: this.props.ingredient.name
+    }
     if ( check !== undefined) {
       alert('You\'ve already added this ingredient...')
     } else (
-      this.props.dispatch(insertRecipeIngredient(this.state.currentIngredient))
+      this.props.dispatch(insertRecipeIngredient(emptyIngredient))
     )
   }
 
