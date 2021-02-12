@@ -1,0 +1,49 @@
+table {
+  border-collapse: collapse;
+}
+
+td, th {
+  border: 1px solid;
+  padding: 2px;
+  text-align: left;
+}
+
+tbody.td {
+  padding-bottom: 5%;
+}
+
+.container {
+  padding: 5%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.section-header {
+  padding: 5% auto;
+  text-align: center;
+}
+
+.table-button {
+  width: 100%;
+}
+
+.table-button-td {
+  border: none;
+}
+
+.table-input {
+  border: none;
+  border-radius: 0;
+  width: 98%;
+}
+
+.table-input-td {
+  padding: 0;
+}
+
+.table-spacer {
+  border: none;
+  height: 15px;
+}

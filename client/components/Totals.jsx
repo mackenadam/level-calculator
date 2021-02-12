@@ -32,15 +32,16 @@ class Totals extends React.Component {
     return (
       <tfoot>
         <tr>
-          <td></td>
+          <td className='table-spacer'></td>
+        </tr>
+        <tr>
+          <th>Per 100g</th>
+          <th>Total weight</th>
           <th>Cal</th>
           <th>Fat</th>
           <th>Carbs</th>
           <th>Sugar</th>
           <th>Protein</th>
-        </tr>
-        <tr>
-          <th>Per 100g</th>
         </tr>
         <tr>
           <th>Total</th>

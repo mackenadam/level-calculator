@@ -93,11 +93,8 @@ class RecipeIngredient extends React.Component {
         <td>
           {this.calculateByWeight(this.state.ingredient, 'protein')}
         </td>
-        <td>
-          <button onClick={this.handleSave}>Save</button>
-        </td>
-        <td>
-          <button onClick={this.handleRemove}>Remove</button>
+        <td className='table-button-td'>
+          <button className='table-button' onClick={this.handleRemove}>Remove</button>
         </td>
       </tr>
     )

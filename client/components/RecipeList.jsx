@@ -16,8 +16,8 @@ class RecipeList extends React.Component {
   render () {
     return (
       <div>
-        <h1>Recipe</h1>
-        <table>
+        <h1 className='section-header'>Recipe</h1>
+        <table className='full-width'>
           <thead>
             <tr>
               <th>Name</th>

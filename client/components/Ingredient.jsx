@@ -96,9 +96,15 @@ class Ingredient extends React.Component {
               <td>{this.props.ingredient.carbohydrates}</td>
               <td>{this.props.ingredient.sugar}</td>
               <td>{this.props.ingredient.protein}</td>
-              <td><button onClick={this.handleAdd}>Add</button></td>
-              <td><button onClick={this.handleToggleEdit}>Edit</button></td>
-              <td><button onClick={this.handleDelete}>x</button></td>
+              <td className='table-button-td'>
+                <button className='table-button' onClick={this.handleAdd}>Add</button>
+              </td>
+              <td className='table-button-td'>
+                <button className='table-button' onClick={this.handleToggleEdit}>Edit</button>
+              </td>
+              <td className='table-button-td'>
+                <button className='table-button' onClick={this.handleDelete}>x</button>
+              </td>
             </tr>
         }
       </>

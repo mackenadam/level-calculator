@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { fetchIngredients } from '../actions'
 
 import Ingredient from './Ingredient'
-import IngredientAdd from './IngredientAdd'
 
 class IngredientList extends React.Component {
   state = {
@@ -18,8 +17,8 @@ class IngredientList extends React.Component {
   render () {
     return (
       <div>
-        <h1>Saved Ingredients</h1>
-        <table>
+        <h1 className='section-header'>Saved Ingredients</h1>
+        <table className='full-width'>
           <thead>
             <tr>
               <th>Name</th>
@@ -36,8 +35,10 @@ class IngredientList extends React.Component {
               return <Ingredient key={ingredient.id} ingredient={ingredient} />
             })
             }
+          <tr>
+            <td className='table-spacer'></td>
+          </tr>
           </tbody>
-          <IngredientAdd />
         </table>
       </div>
     )

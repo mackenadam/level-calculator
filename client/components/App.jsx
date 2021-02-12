@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import { fetchFruits } from '../actions'
 
+import IngredientAdd from './IngredientAdd'
 import IngredientList from './IngredientList'
 import RecipeList from './RecipeList'
 
@@ -17,9 +18,10 @@ export class App extends React.Component {
 
   render () {
     return (
-      <div className='app'>
+      <div className='container'>
         <RecipeList />
         <IngredientList />
+        <IngredientAdd />
       </div>
     )
   }
