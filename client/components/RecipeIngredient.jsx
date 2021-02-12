@@ -75,8 +75,8 @@ class RecipeIngredient extends React.Component {
         <td>
           {this.state.ingredient.name}
         </td>
-        <td>
-          <input type="number" name="weight" value={this.state.ingredient.weight} onChange={this.handleChange} />
+        <td className='table-input-td'>
+          <input className='table-input' type="number" name="weight" value={this.state.ingredient.weight} onChange={this.handleChange} />
         </td>
         <td>
           {this.calculateByWeight(this.state.ingredient, 'energy')}
