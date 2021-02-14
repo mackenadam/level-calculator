@@ -11,42 +11,26 @@ class RecipeIngredient extends React.Component {
   }
 
   handleChange = (event) => {
+    let ingredient = this.state.ingredient
     let newWeight = event.target.value
+
     this.setState({
       ingredient: {
         ...this.state.ingredient,
-        weight: newWeight
+        weight: newWeight,
+        energy: this.calculateByWeight(ingredient.id, newWeight, 'energy'),
+        fat: this.calculateByWeight(ingredient.id, newWeight, 'fat'),
+        carbohydrates: this.calculateByWeight(ingredient.id, newWeight, 'carbohydrates'),
+        sugar: this.calculateByWeight(ingredient.id, newWeight, 'sugar'),
+        protein: this.calculateByWeight(ingredient.id, newWeight, 'protein')
       }
     }, () => {
-      let newEnergy = this.calculateByWeight(this.state.ingredient, 'energy')
-      let newFat = this.calculateByWeight(this.state.ingredient, 'fat')
-      let newCarbohydrates = this.calculateByWeight(this.state.ingredient, 'carbohydrates')
-      let newSugar = this.calculateByWeight(this.state.ingredient, 'sugar')
-      let newProtein = this.calculateByWeight(this.state.ingredient, 'protein')
-      
-      this.setState({
-        ingredient: {
-          ...this.state.ingredient,
-          energy: newEnergy,
-          fat: newFat,
-          carbohydrates: newCarbohydrates,
-          sugar: newSugar,
-          protein: newProtein,
-        }
-      }, () => {this.props.dispatch(updateRecipe(this.state.ingredient))})
+      this.props.dispatch(updateRecipe(this.state.ingredient))
     })
   }
 
   handleRemove = () => {
     this.props.dispatch(removeRecipeIngredient(this.props.ingredient.id))
-  }
-
-  handleSave = () => {
-    if (this.state.ingredient.weight == this.props.ingredient.weight) {
-      alert('You haven\'t changed the weight...')
-    } else {
-      this.props.dispatch(updateRecipe(this.state.ingredient))
-    }
   }
 
   filterIngredients = (id, array) => {
@@ -55,43 +39,41 @@ class RecipeIngredient extends React.Component {
     })
   }
 
-  updateValues = () => {
-
-  }
-
-  calculateByWeight = (ingredient, name) => {
-    let data = this.filterIngredients(ingredient.id, this.props.ingredients)
+  calculateByWeight = (id, weight, component) => {
+    let data = this.filterIngredients(id, this.props.ingredients)
     if (data.length === 0) {
       return 0
     } else {
-      let value = ((ingredient.weight * data[0][name]) / 100).toFixed(1)
+      let value = ((weight * data[0][component]) / 100).toFixed(1)
       return value
     }
   }
 
   render () {
+    let ingredient = this.state.ingredient
+
     return (
-      <tr key={this.state.ingredient.id}>
+      <tr key={ingredient.id}>
         <td>
-          {this.state.ingredient.name}
+          {ingredient.name}
         </td>
         <td className='table-input-td'>
           <input className='table-input' type="number" name="weight" value={this.state.ingredient.weight} onChange={this.handleChange} />
         </td>
         <td>
-          {this.calculateByWeight(this.state.ingredient, 'energy')}
+          {ingredient.energy}
         </td>
         <td>
-          {this.calculateByWeight(this.state.ingredient, 'fat')}
+          {ingredient.fat}
         </td>
         <td>
-          {this.calculateByWeight(this.state.ingredient, 'carbohydrates')}
+          {ingredient.carbohydrates}
         </td>
         <td>
-          {this.calculateByWeight(this.state.ingredient, 'sugar')}
+          {ingredient.sugar}
         </td>
         <td>
-          {this.calculateByWeight(this.state.ingredient, 'protein')}
+          {ingredient.protein}
         </td>
         <td className='table-button-td'>
           <button className='table-button' onClick={this.handleRemove}>Remove</button>
