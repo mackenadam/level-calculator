@@ -11,8 +11,6 @@ class RecipeList extends React.Component {
     this.props.dispatch(fetchRecipe())
   }
 
-
-
   render () {
     return (
       <div>
