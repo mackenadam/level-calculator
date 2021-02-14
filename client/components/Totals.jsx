@@ -2,30 +2,33 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 class Totals extends React.Component {
-
   sumValues = (value) => {
-    let total = 0
-    let weight = 0
-    if (this.props.recipe.length === 0) {
-      return 0
-    } else if (this.props.recipe.length === 1) {
-      if (this.props.recipe[0][value] === 0 || this.props.recipe[0].weight === 0) {
+    let recipeArray = this.props.recipe
+    let totalValue = 0
+    let totalWeight = 0
+
+    if (recipeArray.length > 0) {
+      recipeArray.map(ingredient => {
+        totalValue = ingredient[value] + totalValue
+        totalWeight = ingredient.weight + totalWeight
+      })
+      let hundreds = totalWeight / 100
+      if (hundreds === 0) {
         return 0
       } else {
-        return (this.props.recipe[0][value] / this.props.recipe[0].weight).toFixed(1)
+        return (totalValue / hundreds).toFixed(1)
       }
     } else {
-      if (this.props.recipe[0][value] === 0 && this.props.recipe[0].weight === 0) {
-        return 0
-      } else {
-        this.props.recipe.map(ingredient => {
-          total = ingredient[value] + total
-          weight = (ingredient.weight + weight)
-        })
-        weight = weight / 100
-        return (total / weight).toFixed(1)
-      }
-    } 
+      return 0
+    }
+  }
+
+  sumWeight = () => {
+    let totalWeight = 0
+    this.props.recipe.map(ingredient => {
+      totalWeight = ingredient.weight + totalWeight
+    })
+    return totalWeight
   }
 
   render () {
@@ -45,6 +48,7 @@ class Totals extends React.Component {
         </tr>
         <tr>
           <th>Total</th>
+          <td>{this.sumWeight()}</td>
           <td>{this.sumValues('energy')}</td>
           <td>{this.sumValues('fat')}</td>
           <td>{this.sumValues('carbohydrates')}</td>
