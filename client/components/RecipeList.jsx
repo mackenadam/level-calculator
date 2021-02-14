@@ -30,8 +30,6 @@ class RecipeList extends React.Component {
           <tbody>
             {
               this.props.recipe.map(ingredient => {
-                // let data = this.filterIngredients(ingredient.id, this.props.ingredients)
-                // console.log(data)
                 return (
                   <RecipeIngredient key={ingredient.id} ingredient={ingredient} />
                 ) 
@@ -47,7 +45,6 @@ class RecipeList extends React.Component {
 
 function mapStateToProps(globalState) {
   return {
-    ingredients: globalState.ingredients,
     recipe: globalState.recipe
   }
 }
