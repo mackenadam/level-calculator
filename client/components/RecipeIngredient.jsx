@@ -10,6 +10,22 @@ class RecipeIngredient extends React.Component {
     }
   }
 
+  calculateByWeight = (id, weight, component) => {
+    let data = this.filterIngredients(id, this.props.ingredients)
+    if (data.length === 0) {
+      return 0
+    } else {
+      let value = ((weight * data[0][component]) / 100).toFixed(1)
+      return value
+    }
+  }
+
+  filterIngredients = (id, array) => {
+    return array.filter(obj => {
+      return obj.id === id
+    })
+  }
+
   handleChange = (event) => {
     let ingredient = this.state.ingredient
     let newWeight = event.target.value
@@ -31,22 +47,6 @@ class RecipeIngredient extends React.Component {
 
   handleRemove = () => {
     this.props.dispatch(removeRecipeIngredient(this.props.ingredient.id))
-  }
-
-  filterIngredients = (id, array) => {
-    return array.filter(obj => {
-      return obj.id === id
-    })
-  }
-
-  calculateByWeight = (id, weight, component) => {
-    let data = this.filterIngredients(id, this.props.ingredients)
-    if (data.length === 0) {
-      return 0
-    } else {
-      let value = ((weight * data[0][component]) / 100).toFixed(1)
-      return value
-    }
   }
 
   render () {
