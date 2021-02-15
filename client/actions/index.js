@@ -1,24 +1,18 @@
-import { getFruits } from '../apis/fruits'
 import { addIngredientAPI, deleteIngredientAPI, getIngredientsAPI, updateIngredientAPI } from '../apis/ingredients'
 import { getRecipeAPI, addRecipeIngredientAPI, removeRecipeIngredientAPI, updateRecipeAPI } from '../apis/recipe'
 
-export const SET_FRUITS = 'SET_FRUITS'
 export const SET_INGREDIENTS = 'SET_INGREDIENTS'
 export const SET_RECIPE = 'SET_RECIPE'
 
-export function setFruits(fruits) {
-  return {
-    type: SET_FRUITS,
-    fruits
-  }
-}
-
-export function fetchFruits() {
+//   ***** INGREDIENT ACTIONS *****
+export function destroyIngredient(id) {
   return dispatch => {
-    return getFruits()
-      .then(fruits => {
-        dispatch(setFruits(fruits))
-        return null
+    return deleteIngredientAPI(id)
+      .then(() => {
+        getIngredientsAPI()
+          .then(ingredients => {
+            dispatch(setIngredients(ingredients))
+        })
       })
   }
 }
@@ -29,13 +23,6 @@ export function fetchIngredients() {
       .then(ingredients => {
         dispatch(setIngredients(ingredients))
       })
-  }
-}
-
-export function setIngredients(ingredients) {
-  return {
-    type: SET_INGREDIENTS,
-    ingredients
   }
 }
 
@@ -51,15 +38,10 @@ export function insertIngredient(newIngredient) {
   }
 }
 
-export function destroyIngredient(id) {
-  return dispatch => {
-    return deleteIngredientAPI(id)
-      .then(() => {
-        getIngredientsAPI()
-          .then(ingredients => {
-            dispatch(setIngredients(ingredients))
-        })
-      })
+export function setIngredients(ingredients) {
+  return {
+    type: SET_INGREDIENTS,
+    ingredients
   }
 }
 
@@ -75,13 +57,7 @@ export function updateIngredient(id, ingredient) {
   }
 }
 
-export function setRecipe(ingredients) {
-  return {
-    type: SET_RECIPE,
-    ingredients
-  }
-}
-
+//   ***** RECIPE ACTIONS *****
 export function fetchRecipe() {
   return dispatch => {
     return getRecipeAPI()
@@ -112,6 +88,13 @@ export function removeRecipeIngredient(id) {
             dispatch(setRecipe(ingredients))
           })
       })
+  }
+}
+
+export function setRecipe(ingredients) {
+  return {
+    type: SET_RECIPE,
+    ingredients
   }
 }
 
