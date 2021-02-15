@@ -6,10 +6,6 @@ import { fetchIngredients } from '../actions'
 import Ingredient from './Ingredient'
 
 class IngredientList extends React.Component {
-  state = {
-    ingredients: []
-  }
-
   componentDidMount () {
     this.props.dispatch(fetchIngredients())
   }
