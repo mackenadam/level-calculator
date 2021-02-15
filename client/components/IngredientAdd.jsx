@@ -77,10 +77,4 @@ class IngredientAdd extends React.Component {
   }
 }
 
-function mapStateToProps(globalState) {
-  return {
-    ingredients: globalState.ingredients
-  }
-}
-
 export default connect()(IngredientAdd)
