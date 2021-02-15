@@ -10,7 +10,7 @@ class Ingredient extends React.Component {
   }
 
   handleAdd = () => {
-    const check = this.props.recipe.find(x => x.id == this.state.currentIngredient.id)
+    const check = this.props.recipe.find(ingredient => ingredient.id == this.state.currentIngredient.id)
     const emptyIngredient = {
       id: this.props.ingredient.id,
       name: this.props.ingredient.name
@@ -22,6 +22,13 @@ class Ingredient extends React.Component {
     )
   }
 
+  handleCancel = () => {
+    this.setState({
+      currentIngredient: this.props.ingredient,
+      isEditing: false
+    })
+  }
+
   handleChange = (event) => {
     this.setState({
       currentIngredient: {
@@ -31,23 +38,10 @@ class Ingredient extends React.Component {
     })
   }
 
-  handleCancel = () => {
-    this.setState({
-      currentIngredient: this.props.ingredient,
-      isEditing: false
-    })
-  }
-
   handleDelete = () => {
     if (confirm('Do you really want to delete this ingredient?')) {
       this.props.dispatch(destroyIngredient(this.props.ingredient.id))
     }
-  }
-
-  handleToggleEdit = () => {
-    this.setState({
-      isEditing: true
-    })
   }
 
   handleSave = () => {
@@ -57,30 +51,37 @@ class Ingredient extends React.Component {
     })
   }
 
+  handleToggleEdit = () => {
+    this.setState({
+      isEditing: true
+    })
+  }
+
   render () {
-    // can add an variable here to cut down on writing this.state.x all the time
+    let currentIngredient = this.state.currentIngredient
+    let savedIngredient = this.props.ingredient
     return (
       <>
         {
           this.state.isEditing 
           ? <tr>
               <td>
-                <input type="text" name="name" onChange={this.handleChange} value={this.state.currentIngredient.name} />
+                <input type="text" name="name" onChange={this.handleChange} value={currentIngredient.name} />
               </td>
               <td>
-                <input type="number" name="energy" onChange={this.handleChange} step="0.1" min="0" value={this.state.currentIngredient.energy} />
+                <input type="number" name="energy" onChange={this.handleChange} step="0.1" min="0" value={currentIngredient.energy} />
               </td>
               <td>
-                <input type="number" name="fat" onChange={this.handleChange} step="0.1" min="0" value={this.state.currentIngredient.fat} />
+                <input type="number" name="fat" onChange={this.handleChange} step="0.1" min="0" value={currentIngredient.fat} />
               </td>
               <td>
-                <input type="number" name="carbohydrates" onChange={this.handleChange} step="0.1" min="0" value={this.state.currentIngredient.carbohydrates} />
+                <input type="number" name="carbohydrates" onChange={this.handleChange} step="0.1" min="0" value={currentIngredient.carbohydrates} />
               </td>
               <td>
-                <input type="number" name="sugar" onChange={this.handleChange} step="0.1" min="0" value={this.state.currentIngredient.sugar} />
+                <input type="number" name="sugar" onChange={this.handleChange} step="0.1" min="0" value={currentIngredient.sugar} />
               </td>
               <td>
-                <input type="number" name="protein" onChange={this.handleChange} step="0.1" min="0" value={this.state.currentIngredient.protein} />
+                <input type="number" name="protein" onChange={this.handleChange} step="0.1" min="0" value={currentIngredient.protein} />
               </td>
               <td>
                 <button onClick={this.handleSave}>Save</button>
@@ -90,12 +91,24 @@ class Ingredient extends React.Component {
               </td>
             </tr>
           : <tr>
-              <td>{this.props.ingredient.name}</td>
-              <td>{this.props.ingredient.energy}</td>
-              <td>{this.props.ingredient.fat}</td>
-              <td>{this.props.ingredient.carbohydrates}</td>
-              <td>{this.props.ingredient.sugar}</td>
-              <td>{this.props.ingredient.protein}</td>
+              <td>
+                {savedIngredient.name}
+              </td>
+              <td>
+                {savedIngredient.energy}
+              </td>
+              <td>
+                {savedIngredient.fat}
+              </td>
+              <td>
+                {savedIngredient.carbohydrates}
+              </td>
+              <td>
+                {savedIngredient.sugar}
+              </td>
+              <td>
+                {savedIngredient.protein}
+              </td>
               <td className='table-button-td'>
                 <button className='table-button' onClick={this.handleAdd}>Add</button>
               </td>
