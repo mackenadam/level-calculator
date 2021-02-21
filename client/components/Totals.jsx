@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 class Totals extends React.Component {
-  sumValues = (value) => {
+  sumValuePer100g = (value) => {
     let recipeArray = this.props.recipe
     let totalValue = 0
     let totalWeight = 0
@@ -23,12 +23,12 @@ class Totals extends React.Component {
     }
   }
 
-  sumWeight = () => {
-    let totalWeight = 0
+  sumValue = (value) => {
+    let totalValue = 0
     this.props.recipe.map(ingredient => {
-      totalWeight = ingredient.weight + totalWeight
+      totalValue = ingredient[value] + totalValue
     })
-    return totalWeight
+    return totalValue
   }
 
   render () {
@@ -38,22 +38,22 @@ class Totals extends React.Component {
           <td className='table-spacer'></td>
         </tr>
         <tr>
-          <th>Per 100g</th>
+          <th></th>
           <th>Total weight</th>
-          <th>Cal</th>
-          <th>Fat</th>
-          <th>Carbs</th>
-          <th>Sugar</th>
-          <th>Protein</th>
+          <th>Total Cal</th>
+          <th>Fat/100g</th>
+          <th>Carbs/100g</th>
+          <th>Sugar/100g</th>
+          <th>Protein/100g</th>
         </tr>
         <tr>
           <th>Total</th>
-          <td>{this.sumWeight()}</td>
-          <td>{this.sumValues('energy')}</td>
-          <td>{this.sumValues('fat')}</td>
-          <td>{this.sumValues('carbohydrates')}</td>
-          <td>{this.sumValues('sugar')}</td>
-          <td>{this.sumValues('protein')}</td>
+          <td>{this.sumValue('weight')}</td>
+          <td>{this.sumValue('energy')}</td>
+          <td>{this.sumValuePer100g('fat')}</td>
+          <td>{this.sumValuePer100g('carbohydrates')}</td>
+          <td>{this.sumValuePer100g('sugar')}</td>
+          <td>{this.sumValuePer100g('protein')}</td>
         </tr>
       </tfoot>
     )
