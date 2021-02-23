@@ -3,6 +3,16 @@ import { getRecipeAPI, addRecipeIngredientAPI, removeRecipeIngredientAPI, update
 
 export const SET_INGREDIENTS = 'SET_INGREDIENTS'
 export const SET_RECIPE = 'SET_RECIPE'
+export const SET_USER = 'SET_USER'
+
+//   ***** AUTH ACTIONS *****
+export function loginUser(credentials) {
+
+}
+
+export function registerUser(credentials) {
+
+}
 
 //   ***** INGREDIENT ACTIONS *****
 export function destroyIngredient(id) {
