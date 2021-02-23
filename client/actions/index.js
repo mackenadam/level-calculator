@@ -1,3 +1,4 @@
+import { loginUserAPI, registerUserAPI } from '../apis/auth'
 import { addIngredientAPI, deleteIngredientAPI, getIngredientsAPI, updateIngredientAPI } from '../apis/ingredients'
 import { getRecipeAPI, addRecipeIngredientAPI, removeRecipeIngredientAPI, updateRecipeAPI } from '../apis/recipe'
 
@@ -7,11 +8,23 @@ export const SET_USER = 'SET_USER'
 
 //   ***** AUTH ACTIONS *****
 export function loginUser(credentials) {
-
+  return dispatch => {
+    return loginUserAPI(credentials)
+      .then(() => {
+        dispatch(setUser('Adam'))
+      })
+  }
 }
 
 export function registerUser(credentials) {
 
+}
+
+export function setUser(userName) {
+  return {
+    type: SET_USER,
+    userName
+  }
 }
 
 //   ***** INGREDIENT ACTIONS *****
