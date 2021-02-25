@@ -1,13 +1,13 @@
 
 exports.seed = function(knex) {
-  return knex('table_name').del()
+  return knex('users').del()
     .then(function () {
-      return knex('table_name').insert([
+      return knex('users').insert([
         {
           id: 1,
           username: 'Adam',
           email: 'test@test.com',
-          password: 'test'
+          hash: 'test'
         }
       ])
     })
