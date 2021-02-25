@@ -3,15 +3,15 @@ import React from 'react'
 export class Login extends React.Component {
   state = {
     user: {
-      email: null,
-      password: null
+      email: '',
+      password: ''
     }
   }
 
   handleChange = (event) => {
     this.setState({
       user: {
-        ...user,
+        ...this.state.user,
         [event.target.name]: event.target.value
       }
     })
@@ -25,8 +25,8 @@ export class Login extends React.Component {
     return (
       <div className='login'>
         <h1>Login</h1>
-        <input type="text" placeholder="Email" name="email" onChange={this.handleChange} />
-        <input type="text" placeholder="Password" name="password" onChange={this.handleChange} />
+        <input type="text" placeholder="Email" name="email" onChange={this.handleChange} value={this.state.user.email} />
+        <input type="text" placeholder="Password" name="password" onChange={this.handleChange} value={this.state.user.password} />
         <input type="submit" value="Login" onClick={this.handleSubmit} />
         <p>New around here? Click here to register!</p>
       </div>
