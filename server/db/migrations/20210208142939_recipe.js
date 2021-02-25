@@ -9,6 +9,7 @@ exports.up = function(knex) {
     table.float('carbohydrates', 1).defaultTo(0)
     table.float('sugar', 1).defaultTo(0)
     table.float('protein', 1).defaultTo(0)
+    table.integer('user_id').defaultTo(0)
   })
 }
 

@@ -9,7 +9,8 @@ exports.seed = function(knex) {
           fat: 6.6,
           carbohydrates: 4.6,
           sugar: 3.5,
-          protein: 12.2
+          protein: 12.2,
+          user_id: 1
         },
         {
           id: 2,
@@ -18,7 +19,8 @@ exports.seed = function(knex) {
           fat: 6.9,
           carbohydrates: 6.6,
           sugar: 5.5,
-          protein: 12.7
+          protein: 12.7,
+          user_id: 0
         }
       ])
     })
