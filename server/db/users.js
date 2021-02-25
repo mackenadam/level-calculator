@@ -6,9 +6,9 @@ function assignToken (id, token, db = connection) {
     .where('id', id)
 }
 
-function getExistingUser (username, db = connection) {
+function getUser (email, db = connection) {
   return db('users').select()
-    .where('username', username)
+    .where('email', email)
     .first()
 }
 
@@ -18,6 +18,6 @@ function registerUser (newUser, db = connection) {
 
 module.exports = {
   assignToken,
-  getExistingUser,
+  getUser,
   registerUser
 }

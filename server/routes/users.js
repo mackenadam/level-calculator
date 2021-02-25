@@ -18,7 +18,7 @@ const options = {
 // ***** Dont forget to set env *******
 
 passport.use(new JwtStrategy(options, (payload, done) => {
-  db.getExistingUser(payload.sub.username)
+  db.getUser(payload.sub.username)
     .then(user => {
       if (user) {
         return done(null, user)
@@ -52,6 +52,20 @@ router.post('/register', (req, res) => {
           token = 'Bearer ' + jwt.sign({ sub: user }, process.env.JWT_SECRET, { expiresIn: '1d' })
           return db.assignToken(id, token)
         })
+    })
+    .then(() => {
+      return db.getUser()
+    })
+    .then(user => {
+      const resObject = {
+        token: token,
+        user: user
+      }
+      res.json(resObject)
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(500).json({ message: 'Something is kaputt...' })
     })
 })
 
