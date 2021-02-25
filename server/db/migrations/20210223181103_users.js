@@ -5,6 +5,7 @@ exports.up = function(knex) {
     table.string('username')
     table.string('email')
     table.string('hash')
+    table.string('token')
   })
 }
 
