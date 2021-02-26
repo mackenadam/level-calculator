@@ -1,8 +1,11 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { registerUser } from '../actions'
 
-export class Register extends React.Component {
+class Register extends React.Component {
   state = {
     newUser: {
+      username: 'TestInRegisterComponent',
       email: '',
       password: '',
       password2: ''
@@ -18,8 +21,15 @@ export class Register extends React.Component {
     })
   }
 
+  // Need to handle our submit on register so we can test the routes/auth/db funcs
   handleSubmit = () => {
-    alert("You did a submit!")
+    const isCompleted = Object.values(this.state.newUser).every(input => input !== '')
+    const passwordsMatch = this.state.newUser.password === this.state.newUser.password2
+    if (isCompleted && passwordsMatch) {
+      this.props.dispatch(registerUser(this.state.newUser))
+    } else {
+      alert("Uh oh, you forgot to enter a registration field! Please make sure everything is filled out and your passwords match.")
+    }
   }
 
   render () {
@@ -35,3 +45,5 @@ export class Register extends React.Component {
     )
   }
 }
+
+export default connect()(Register)

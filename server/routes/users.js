@@ -12,7 +12,6 @@ const JwtStrategy = require('passport-jwt').Strategy
 const ExtractJwt = require('passport-jwt').ExtractJwt
 const options = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-  // ***** Dont forget to set env *******
   secretOrKey: 'secret'
 }
 // ***** Dont forget to set env *******
@@ -44,23 +43,30 @@ router.post('/register', (req, res) => {
         email: req.body.email,
         hash: hash
       }
+      console.log('Route 1', user)
       return user
     })
     .then(user => {
-      db.registerUser(user)
+      console.log('Route 1.5', user)
+      return db.registerUser(user)
         .then(id => {
-          token = 'Bearer ' + jwt.sign({ sub: user }, process.env.JWT_SECRET, { expiresIn: '1d' })
+          // need to set up .ENV and change the secret below to use that
+          token = 'Bearer ' + jwt.sign({ sub: user }, "process.env.JWT_SECRET", { expiresIn: '1d' })
+          console.log('Route 2', token)
           return db.assignToken(id, token)
         })
     })
-    .then(() => {
-      return db.getUser()
+    .then(id => {
+      console.log('Route 3', id)
+      return db.getUser(id)
     })
     .then(user => {
+      console.log('Route 4', user)
       const resObject = {
         token: token,
         user: user
       }
+      console.log('Route 5', resObject)
       res.json(resObject)
     })
     .catch(err => {

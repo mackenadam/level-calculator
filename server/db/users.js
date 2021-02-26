@@ -6,9 +6,9 @@ function assignToken (id, token, db = connection) {
     .where('id', id)
 }
 
-function getUser (email, db = connection) {
+function getUser (id, db = connection) {
   return db('users').select()
-    .where('email', email)
+    .where('id', id)
     .first()
 }
 

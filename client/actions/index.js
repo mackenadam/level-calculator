@@ -1,4 +1,4 @@
-import { loginUserAPI, registerUserAPI } from '../apis/auth'
+import { loginUserAPI, registerUserAPI } from '../apis/users'
 import { addIngredientAPI, deleteIngredientAPI, getIngredientsAPI, updateIngredientAPI } from '../apis/ingredients'
 import { getRecipeAPI, addRecipeIngredientAPI, removeRecipeIngredientAPI, updateRecipeAPI } from '../apis/recipe'
 
@@ -7,23 +7,32 @@ export const SET_RECIPE = 'SET_RECIPE'
 export const SET_USER = 'SET_USER'
 
 //   ***** AUTH ACTIONS *****
-export function loginUser(credentials) {
+export function loginUser(user) {
   return dispatch => {
-    return loginUserAPI(credentials)
+    return loginUserAPI(user)
       .then(() => {
         dispatch(setUser('Adam'))
       })
   }
 }
 
-export function registerUser(credentials) {
-
+export function registerUser(newUser) {
+  return dispatch => {
+    console.log('Action dispatch')
+    return registerUserAPI(newUser)
+      .then(user => {
+        console.log('Action return')
+        window.localStorage.setItem('token', user.token)
+        delete user.token
+        dispatch(setUser(user))
+      })
+  }
 }
 
-export function setUser(userName) {
+export function setUser(user) {
   return {
     type: SET_USER,
-    userName
+    user
   }
 }
 
