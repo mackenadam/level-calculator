@@ -26,6 +26,14 @@ class Register extends React.Component {
     const passwordsMatch = this.state.newUser.password === this.state.newUser.password2
     if (isCompleted && passwordsMatch) {
       this.props.dispatch(registerUser(this.state.newUser))
+      this.setState({
+        newUser: {
+          username: '',
+          email: '',
+          password: '',
+          password2: ''
+        }
+      })
     } else {
       alert("Uh oh, you forgot to enter a registration field! Please make sure everything is filled out and your passwords match.")
     }
