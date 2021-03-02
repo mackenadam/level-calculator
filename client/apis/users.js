@@ -9,11 +9,7 @@ export function loginUserAPI (user) {
 }
 
 export function registerUserAPI (newUser) {
-  console.log('API dispatch')
   return request.post(rootUrl + '/register')
     .send(newUser)
-    .then(res => {
-      console.log('API return', res.body)
-      return res.body
-    })
+    .then(res => res.body)
 }

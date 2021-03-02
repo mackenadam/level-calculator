@@ -5,7 +5,7 @@ import { registerUser } from '../actions'
 class Register extends React.Component {
   state = {
     newUser: {
-      username: 'TestInRegisterComponent',
+      username: '',
       email: '',
       password: '',
       password2: ''
@@ -21,7 +21,6 @@ class Register extends React.Component {
     })
   }
 
-  // Need to handle our submit on register so we can test the routes/auth/db funcs
   handleSubmit = () => {
     const isCompleted = Object.values(this.state.newUser).every(input => input !== '')
     const passwordsMatch = this.state.newUser.password === this.state.newUser.password2
@@ -36,6 +35,7 @@ class Register extends React.Component {
     return (
       <div className='register'>
         <h1>Register</h1>
+        <input type="text" placeholder="Username" name="username" onChange={this.handleChange} value={this.state.newUser.username} />
         <input type="text" placeholder="Email" name="email" onChange={this.handleChange} value={this.state.newUser.email} />
         <input type="password" placeholder="Password" name="password" onChange={this.handleChange} value={this.state.newUser.password} />
         <input type="password" placeholder="Re-enter password" name="password2" onChange={this.handleChange} value={this.state.newUser.password2} />

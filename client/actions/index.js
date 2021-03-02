@@ -18,13 +18,10 @@ export function loginUser(user) {
 
 export function registerUser(newUser) {
   return dispatch => {
-    console.log('Action dispatch')
-    return registerUserAPI(newUser)
-      .then(user => {
-        console.log('Action return')
-        window.localStorage.setItem('token', user.token)
-        delete user.token
-        dispatch(setUser(user))
+     registerUserAPI(newUser)
+      .then(res => {
+        window.localStorage.setItem('token', res.token)
+        return dispatch(setUser(res.user))
       })
   }
 }

@@ -43,35 +43,27 @@ router.post('/register', (req, res) => {
         email: req.body.email,
         hash: hash
       }
-      console.log('Route 1', user)
       return user
     })
     .then(user => {
-      console.log('Route 1.5', user)
-      return db.registerUser(user)
+      db.registerUser(user)
         .then(id => {
-          // need to set up .ENV and change the secret below to use that
-          token = 'Bearer ' + jwt.sign({ sub: user }, "process.env.JWT_SECRET", { expiresIn: '1d' })
-          console.log('Route 2', token)
+          /******** Need to init .env ********/
+          token = 'Bearer ' + jwt.sign({ sub: user }, 'process.env.JWT_SECRET', { expiresIn: '1d' })
+          return id[0]
+        })
+        .then(id => {
           return db.assignToken(id, token)
         })
-    })
-    .then(id => {
-      console.log('Route 3', id)
-      return db.getUser(id)
-    })
-    .then(user => {
-      console.log('Route 4', user)
-      const resObject = {
-        token: token,
-        user: user
-      }
-      console.log('Route 5', resObject)
-      res.json(resObject)
+        .then(id => {
+          return db.getUser(id)
+        })
+        .then(user => {
+          res.json({token, user})
+        })
     })
     .catch(err => {
-      console.log(err)
-      res.status(500).json({ message: 'Something is kaputt...' })
+      res.status(500).json({ message: 'Sorry, something is kaputt...' })
     })
 })
 

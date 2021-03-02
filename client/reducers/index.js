@@ -2,10 +2,10 @@ import { combineReducers } from 'redux'
 
 import ingredients from './ingredients'
 import recipe from './recipe'
-import users from './users'
+import user from './user'
 
 export default combineReducers({
   ingredients,
   recipe,
-  users
+  user
 })

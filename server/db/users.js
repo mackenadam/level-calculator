@@ -2,8 +2,9 @@ const connection = require('./connection')
 
 function assignToken (id, token, db = connection) {
   return db('users')
-    .update({ token: token })
     .where('id', id)
+    .update('token', token)
+    .then(() => id)
 }
 
 function getUser (id, db = connection) {
