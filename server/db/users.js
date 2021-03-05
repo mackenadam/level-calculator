@@ -7,18 +7,20 @@ function assignToken (id, token, db = connection) {
     .then(() => id)
 }
 
-function getUser (id, db = connection) {
-  return db('users').select()
-    .where('id', id)
+function getUserByColumn (column, value, db = connection) {
+  return db('users')
+    .select()
+    .where(column, value)
     .first()
 }
 
 function registerUser (newUser, db = connection) {
-  return db('users').insert(newUser)
+  return db('users')
+    .insert(newUser)
 }
 
 module.exports = {
   assignToken,
-  getUser,
+  getUserByColumn,
   registerUser
 }

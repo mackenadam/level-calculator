@@ -31,7 +31,29 @@ passport.use(new JwtStrategy(options, (payload, done) => {
 }))
 
 router.post('/login', (req, res) => {
-
+  let token
+  db.getUserByColumn('username', req.body.username)
+    .then(user => {
+      if (user) {
+        return bcrypt.compare(req.body.password, user.hash)
+        .then(result => {
+          if (result) {
+            /* Need to init ENV */
+            token = 'Bearer ' + jwt.sign({ sub: user }, 'process.env.JWT_SECRET', { expiresIn: '1d' })
+            return db.assignToken(user.id, token)
+          } else {
+            console.log('User not found')
+            return res.status(500).json({ message: 'User not found' })
+          }
+        })
+        .then(id => {
+          return db.getUserByColumn('id', id)
+        })
+        .then(user => {
+          res.json({token, user})
+        })
+      }
+    })
 })
 
 router.post('/register', (req, res) => {
@@ -47,16 +69,16 @@ router.post('/register', (req, res) => {
     })
     .then(user => {
       db.registerUser(user)
-        .then(id => {
+        .then(ids => {
           /******** Need to init .env ********/
           token = 'Bearer ' + jwt.sign({ sub: user }, 'process.env.JWT_SECRET', { expiresIn: '1d' })
-          return id[0]
+          return ids[0]
         })
         .then(id => {
           return db.assignToken(id, token)
         })
         .then(id => {
-          return db.getUser(id)
+          return db.getUserByColumn('id', id)
         })
         .then(user => {
           res.json({token, user})
