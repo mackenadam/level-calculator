@@ -47,7 +47,7 @@ class Register extends React.Component {
         <input type="text" placeholder="Email" name="email" onChange={this.handleChange} value={this.state.newUser.email} />
         <input type="password" placeholder="Password" name="password" onChange={this.handleChange} value={this.state.newUser.password} />
         <input type="password" placeholder="Re-enter password" name="password2" onChange={this.handleChange} value={this.state.newUser.password2} />
-        <input type="submit" value="Login" onClick={this.handleSubmit} />
+        <input type="submit" value="Register" onClick={this.handleSubmit} />
         <p>Already have an account? Click here to login!</p>
       </div>
     )
