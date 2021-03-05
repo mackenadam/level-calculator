@@ -9,9 +9,10 @@ export const SET_USER = 'SET_USER'
 //   ***** AUTH ACTIONS *****
 export function loginUser(user) {
   return dispatch => {
-    return loginUserAPI(user)
-      .then(() => {
-        dispatch(setUser('Adam'))
+    loginUserAPI(user)
+      .then(res => {
+        window.localStorage.setItem('token', res.token)
+        return dispatch(setUser(res.user))
       })
   }
 }
