@@ -2,7 +2,7 @@ import React from 'react'
 
 import IngredientAdd from './IngredientAdd'
 import IngredientList from './IngredientList'
-import { Login } from './Login'
+import Login from './Login'
 import RecipeList from './RecipeList'
 import Register from './Register'
 
