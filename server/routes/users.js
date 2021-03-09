@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express = require('express')
 const router = express.Router()
 
@@ -7,14 +9,12 @@ const jwt = require('jsonwebtoken')
 const passport = require('passport')
 const saltRounds = 5
 
-// ***** Dont forget to set env *******
 const JwtStrategy = require('passport-jwt').Strategy
 const ExtractJwt = require('passport-jwt').ExtractJwt
 const options = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-  secretOrKey: 'secret'
+  secretOrKey: process.env.JWT_SECRET
 }
-// ***** Dont forget to set env *******
 
 passport.use(new JwtStrategy(options, (payload, done) => {
   db.getUser(payload.sub.username)
@@ -38,8 +38,7 @@ router.post('/login', (req, res) => {
         return bcrypt.compare(req.body.password, user.hash)
         .then(result => {
           if (result) {
-            /* Need to init ENV */
-            token = 'Bearer ' + jwt.sign({ sub: user }, 'process.env.JWT_SECRET', { expiresIn: '1d' })
+            token = 'Bearer ' + jwt.sign({ sub: user }, process.env.JWT_SECRET, { expiresIn: '1d' })
             return db.assignToken(user.id, token)
           } else {
             console.log('User not found')
@@ -69,8 +68,7 @@ router.post('/register', (req, res) => {
     .then(user => {
       db.registerUser(user)
         .then(ids => {
-          /******** Need to init .env ********/
-          token = 'Bearer ' + jwt.sign({ sub: user }, 'process.env.JWT_SECRET', { expiresIn: '1d' })
+          token = 'Bearer ' + jwt.sign({ sub: user }, process.env.JWT_SECRET, { expiresIn: '1d' })
           return ids[0]
         })
         .then(id => {
