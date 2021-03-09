@@ -1,4 +1,4 @@
-import { loginUserAPI, registerUserAPI } from '../apis/users'
+import { checkTokenAPI, loginUserAPI, registerUserAPI } from '../apis/users'
 import { addIngredientAPI, deleteIngredientAPI, getIngredientsAPI, updateIngredientAPI } from '../apis/ingredients'
 import { getRecipeAPI, addRecipeIngredientAPI, removeRecipeIngredientAPI, updateRecipeAPI } from '../apis/recipe'
 
@@ -7,6 +7,17 @@ export const SET_RECIPE = 'SET_RECIPE'
 export const SET_USER = 'SET_USER'
 
 //   ***** AUTH ACTIONS *****
+export function checkToken(token) {
+  return dispatch => {
+    checkTokenAPI(token)
+      .then(res => {
+        if(res.user) {
+          return dispatch(setUser(res.user))
+        }
+      })
+  }
+}
+
 export function loginUser(user) {
   return dispatch => {
     loginUserAPI(user)

@@ -30,6 +30,16 @@ passport.use(new JwtStrategy(options, (payload, done) => {
     })
 }))
 
+router.post('/checkToken', (req, res) => {
+  db.checkToken(req.body.token)
+    .then(user => {
+      res.json({user})
+    })
+    .catch(err => {
+      res.status(500).json({ message: 'Sorry, something is kaputt...' })
+    })
+})
+
 router.post('/login', (req, res) => {
   let token
   db.getUserByColumn('username', req.body.username)
@@ -41,7 +51,6 @@ router.post('/login', (req, res) => {
             token = 'Bearer ' + jwt.sign({ sub: user }, process.env.JWT_SECRET, { expiresIn: '1d' })
             return db.assignToken(user.id, token)
           } else {
-            console.log('User not found')
             return res.status(500).json({ message: 'User not found' })
           }
         })
@@ -52,6 +61,9 @@ router.post('/login', (req, res) => {
           res.json({token, user})
         })
       }
+    })
+    .catch(err => {
+      res.status(500).json({ message: 'Sorry, something is kaputt...' })
     })
 })
 

@@ -2,6 +2,14 @@ import request from 'superagent'
 
 const rootUrl = '/api/v1/users'
 
+export function checkTokenAPI(token) {
+  return request.post(rootUrl + '/checkToken')
+    .send({token})
+    .then(res => {
+      return res.body
+    })
+}
+
 export function loginUserAPI (user) {
   return request.post(rootUrl + '/login')
     .send(user)

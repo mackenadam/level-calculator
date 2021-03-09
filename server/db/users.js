@@ -7,6 +7,12 @@ function assignToken (id, token, db = connection) {
     .then(() => id)
 }
 
+function checkToken(token, db = connection) {
+  return db('users')
+    .where('token', token)
+    .first()
+}
+
 function getUserByColumn (column, value, db = connection) {
   return db('users')
     .select()
@@ -21,6 +27,7 @@ function registerUser (newUser, db = connection) {
 
 module.exports = {
   assignToken,
+  checkToken,
   getUserByColumn,
   registerUser
 }
