@@ -6,7 +6,6 @@ exports.seed = function(knex) {
         {
           id: 1,
           username: 'Adam',
-          email: 'test@test.com',
           hash: 'test'
         }
       ])

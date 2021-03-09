@@ -62,7 +62,6 @@ router.post('/register', (req, res) => {
     .then(hash => {
       const user = {
         username: req.body.username,
-        email: req.body.email,
         hash: hash
       }
       return user

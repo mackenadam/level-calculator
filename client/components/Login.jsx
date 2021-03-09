@@ -6,7 +6,6 @@ class Login extends React.Component {
   state = {
     user: {
       username: '',
-      email: '',
       password: ''
     }
   }
@@ -27,7 +26,6 @@ class Login extends React.Component {
       this.setState({
         user: {
           username: '',
-          email: '',
           password: ''
         }
       })
@@ -41,7 +39,6 @@ class Login extends React.Component {
       <div className='login'>
         <h1>Login</h1>
         <input type="text" placeholder="Username" name="username" onChange={this.handleChange} value={this.state.user.username} />
-        <input type="text" placeholder="Email" name="email" onChange={this.handleChange} value={this.state.user.email} />
         <input type="text" placeholder="Password" name="password" onChange={this.handleChange} value={this.state.user.password} />
         <input type="submit" value="Login" onClick={this.handleSubmit} />
         <p>New around here? Click here to register!</p>

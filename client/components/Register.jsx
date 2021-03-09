@@ -6,7 +6,6 @@ class Register extends React.Component {
   state = {
     newUser: {
       username: '',
-      email: '',
       password: '',
       password2: ''
     }
@@ -29,7 +28,6 @@ class Register extends React.Component {
       this.setState({
         newUser: {
           username: '',
-          email: '',
           password: '',
           password2: ''
         }
@@ -44,7 +42,6 @@ class Register extends React.Component {
       <div className='register'>
         <h1>Register</h1>
         <input type="text" placeholder="Username" name="username" onChange={this.handleChange} value={this.state.newUser.username} />
-        <input type="text" placeholder="Email" name="email" onChange={this.handleChange} value={this.state.newUser.email} />
         <input type="password" placeholder="Password" name="password" onChange={this.handleChange} value={this.state.newUser.password} />
         <input type="password" placeholder="Re-enter password" name="password2" onChange={this.handleChange} value={this.state.newUser.password2} />
         <input type="submit" value="Register" onClick={this.handleSubmit} />
